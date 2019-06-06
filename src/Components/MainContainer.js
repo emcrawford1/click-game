@@ -14,7 +14,7 @@ const flexContainer = {
 
 class MainContainer extends Component {
   state = {
-    currentScore: 0,
+    currentScore: 1,
     topScore: 0,
     guessMessage: "Click on an Image to Begin!",
     pictures: [
@@ -60,7 +60,7 @@ class MainContainer extends Component {
 
       {
         url: "/images/picture9.jpg",
-        guessStatus: false
+        guessStatus: true
       },
 
     ]
@@ -69,8 +69,24 @@ class MainContainer extends Component {
 
   //Functions
 
-  clickHandler(guessStatus) {
-    console.log("guessStatus");
+  clickHandler(guessStatus, index) {
+    let picturesCopy = JSON.parse(JSON.stringify(this.state.pictures));
+    picturesCopy[index].guessStatus = true;
+    console.log(guessStatus);
+    this.setState({
+      pictures: picturesCopy
+    });
+    if(guessStatus){
+      if(this.state.currentScore > this.state.topScore) {
+        this.setState({
+          topScore: this.state.currentScore
+        })
+      };
+      this.setState({
+        currentScore: 0,
+        guessMessage: "You guessed incorrectly!"
+      });
+    }
   };
 
   shuffle() {
@@ -81,6 +97,7 @@ class MainContainer extends Component {
     return (
       <div className="wrapper">
         <Nav
+        guessMessage={this.state.guessMessage}
         currentScore={this.state.currentScore}
         topScore={this.state.topScore}
         />
@@ -90,7 +107,7 @@ class MainContainer extends Component {
             <Game 
             key={index}
             url={x.url}
-            onClick={() => this.clickHandler.bind(x.guessStatus)}
+            onClick={() => this.clickHandler(x.guessStatus, index)}
             />
           ))}
           

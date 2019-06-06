@@ -5,7 +5,7 @@ function Nav(props) {
     <nav className="navbar navbar-dark bg-dark sticky-top">
       <div className="navbar-brand text-white">Clicky Game!</div>
       <span className="navbar-text text-white d-none d-sm-block">
-        Click an image to begin!
+        {props.guessMessage}
       </span>
 
       <span className="navbar-text text-white">

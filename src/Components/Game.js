@@ -10,7 +10,7 @@ const box = {
 }
 function Game(props) {
   return (
-    <img className="box rounded-lg" style={box} src={props.url} alt="picture1"  />
+    <img className="box rounded-lg" onClick={props.onClick} style={box} src={props.url} alt="picture1"  />
   );
 }
 
