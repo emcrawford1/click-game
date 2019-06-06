@@ -14,7 +14,7 @@ const flexContainer = {
 
 class MainContainer extends Component {
   state = {
-    currentScore: 1,
+    currentScore: 0,
     topScore: 0,
     guessMessage: "Click on an Image to Begin!",
     pictures: [
@@ -60,7 +60,7 @@ class MainContainer extends Component {
 
       {
         url: "/images/picture9.jpg",
-        guessStatus: true
+        guessStatus: false
       },
 
     ]
@@ -70,12 +70,23 @@ class MainContainer extends Component {
   //Functions
 
   clickHandler(guessStatus, index) {
+    //Creating a copy of the pictures array in the "state" object
     let picturesCopy = JSON.parse(JSON.stringify(this.state.pictures));
+
+    //Setting the guessStatus value in the copied picture array to "true" for the picture clicked
     picturesCopy[index].guessStatus = true;
+
     console.log(guessStatus);
+
+    //Assigning the value of the pictures array in the state object to the value of the picturesCopy array
     this.setState({
       pictures: picturesCopy
-    });
+    }, () => {;
+
+    console.log(this.state.pictures);
+
+    //If the guessStatus of the picture that the user clicked was already true (the user had 
+    //previously clicked the picture), the code in this 'if' block will run
     if(guessStatus){
       if(this.state.currentScore > this.state.topScore) {
         this.setState({
@@ -84,13 +95,44 @@ class MainContainer extends Component {
       };
       this.setState({
         currentScore: 0,
-        guessMessage: "You guessed incorrectly!"
+        guessMessage: "You guessed incorrectly!",
+        pictures: this.state.pictures.map(picture => ({ url: picture.url, guessStatus: false}))
       });
+
+      //Shuffle the pictures
+      this.shuffle();
     }
+
+    //If picture was not previously clicked run this code
+    else{
+      console.log(this.state.currentScore);
+      this.setState({
+        currentScore: this.state.currentScore + 1,
+        guessMessage: "You guessed correctly",
+        pictures: picturesCopy
+      });
+
+      this.shuffle();
+    }});
   };
 
-  shuffle() {
 
+  //Shuffle pictures
+  shuffle() {
+    let pictureCopy = JSON.parse(JSON.stringify(this.state.pictures));
+    let randomPictureArr = [];
+    console.log(pictureCopy.length);
+
+    while(pictureCopy.length > 0){
+      let itemsLeft = pictureCopy.length;
+      let randomIndex = Math.floor(Math.random() * itemsLeft);
+      randomPictureArr.push(pictureCopy[randomIndex]);
+      pictureCopy.splice(randomIndex, 1);
+    }
+
+    this.setState({
+      pictures: randomPictureArr
+    })
   };
 
   render() {
