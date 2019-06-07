@@ -1,3 +1,10 @@
+# Click-Game
+## Description:
+
+This project was built as a homework assignment for the Vanderbilt Coding Bootcamp.  This application is a memory game where users click on a list of images.  After clicking an image, the images are then scrambled.  Users then another image.  Each time a user clicks a unique image a point is added to the user's current score.  If the user clicks an image that has already been clicked, the game resets and the user's top score is updated (if it was less than their current score).  
+
+# React information:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
