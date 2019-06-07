@@ -19,47 +19,47 @@ class MainContainer extends Component {
     guessMessage: "Click on an Image to Begin!",
     pictures: [
       {
-        url: "/images/picture1.jpg",
+        url: "images/picture1.jpg",
         guessStatus: false
       },
 
       {
-        url: "/images/picture2.jpg",
+        url: "images/picture2.jpg",
         guessStatus: false
       },
 
       {
-        url: "/images/picture3.jpg",
+        url: "images/picture3.jpg",
         guessStatus: false
       },
 
       {
-        url: "/images/picture4.jpg",
+        url: "images/picture4.jpg",
         guessStatus: false
       },
 
       {
-        url: "/images/picture5.jpg",
+        url: "images/picture5.jpg",
         guessStatus: false
       },
 
       {
-        url: "/images/picture6.jpg",
+        url: "images/picture6.jpg",
         guessStatus: false
       },
 
       {
-        url: "/images/picture7.jpg",
+        url: "images/picture7.jpg",
         guessStatus: false
       },
 
       {
-        url: "/images/picture8.jpg",
+        url: "images/picture8.jpg",
         guessStatus: false
       },
 
       {
-        url: "/images/picture9.jpg",
+        url: "images/picture9.jpg",
         guessStatus: false
       },
 
