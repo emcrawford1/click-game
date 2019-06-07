@@ -81,7 +81,7 @@ class MainContainer extends Component {
     //Assigning the value of the pictures array in the state object to the value of the picturesCopy array
     this.setState({
       pictures: picturesCopy
-    }, () => {;
+    }, () => {
 
     console.log(this.state.pictures);
 
@@ -97,10 +97,11 @@ class MainContainer extends Component {
         currentScore: 0,
         guessMessage: "You guessed incorrectly!",
         pictures: this.state.pictures.map(picture => ({ url: picture.url, guessStatus: false}))
-      });
+      }, () => {
 
       //Shuffle the pictures
       this.shuffle();
+      })
     }
 
     //If picture was not previously clicked run this code
